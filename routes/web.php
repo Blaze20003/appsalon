@@ -20,3 +20,7 @@ Route::get('/registro', [AuthController::class, 'showRegister'])->name('register
 Route::post('/registro', [AuthController::class, 'register'])->name('register.post');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Rutas de Agendador de Citas
+Route::get('/citas/crear/{id}', [CitaController::class, 'crear'])->name('citas.crear');
+Route::post('/citas/guardar', [CitaController::class, 'guardar'])->name('citas.guardar');
