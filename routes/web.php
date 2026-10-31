@@ -26,3 +26,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 use App\Http\Controllers\CitaController; // <--- ¡Asegúrate de que esta línea esté arriba del todo!
 Route::get('/citas/crear/{id}', [CitaController::class, 'crear'])->name('citas.crear');
 Route::post('/citas/guardar', [CitaController::class, 'guardar'])->name('citas.guardar');
+
+Route::get('/citas/mis-citas', [CitaController::class, 'indexCliente'])->name('citas.index');
+
+ 
+Route::get('/admin/citas', [CitaController::class, 'indexAdmin'])->name('citas.admin');
+Route::patch('/admin/citas/{id}/estado', [CitaController::class, 'actualizarEstado'])->name('citas.actualizarEstado');
+
+ 
+Route::delete('/admin/citas/{id}', [CitaController::class, 'destruir'])->name('citas.destruir');
