@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Servicio; // Asegúrate de tener tu modelo de Servicio o ajustarlo a tu estructura
-// use App\Models\Cita; // Descomenta cuando crees tu modelo Cita
+use App\Models\Servicio;  
+use App\Models\Citas;
 
 class CitaController extends Controller
 {
@@ -23,18 +23,18 @@ class CitaController extends Controller
             'hora' => 'required',
             'servicio_id' => 'required'
         ]);
+ 
 
-        /* 
-           Aquí puedes realizar la inserción a tu base de datos con tu modelo Cita:
-           Cita::create([
-               'usuario_id' => session('user_id'),
-               'servicio_id' => $request->servicio_id,
-               'fecha' => $request->fecha,
-               'hora' => $request->hora
-           ]);
-        */
+           
 
         return redirect()->route('citas.crear', $request->servicio_id)
                          ->with('exito', '¡Cita agendada y horario reservado con éxito!');
     }
+    public function indexCliente()
+{
+    // Aquí puedes consultar las citas asociadas al usuario actual de la sesión
+    // $citas = Cita::where('usuario_id', session('user_id'))->get();
+    
+    return view('citas.index'); // Una vista que liste las reservas
+}
 }
