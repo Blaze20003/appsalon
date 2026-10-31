@@ -32,6 +32,7 @@ Route::get('/citas/mis-citas', [CitaController::class, 'indexCliente'])->name('c
  
 Route::get('/admin/citas', [CitaController::class, 'indexAdmin'])->name('citas.admin');
 Route::patch('/admin/citas/{id}/estado', [CitaController::class, 'actualizarEstado'])->name('citas.actualizarEstado');
-
+Route::get('/admin/citas/{id}/edit', [CitaController::class, 'edit'])->name('citas.edit');
+Route::put('/admin/citas/{id}', [CitaController::class, 'update'])->name('citas.update');
  
 Route::delete('/admin/citas/{id}', [CitaController::class, 'destruir'])->name('citas.destruir');

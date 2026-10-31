@@ -71,5 +71,35 @@ class CitaController extends Controller
         return redirect()->back()->with('exito', '¡La cita ha sido actualizada correctamente!');
     }
 
+    // Muestra el formulario para editar una cita existente
+    public function edit($id)
+    {
+        $cita = Cita::with(['usuario', 'servicio'])->findOrFail($id);
+        $servicios = \App\Models\Servicio::all(); // Trae todos los servicios disponibles para cambiarlo si se desea
+        
+        return view('citas.edit', compact('cita', 'servicios'));
+    }
+
+    // Guarda los cambios actualizados de la cita en la base de datos
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'servicio_id' => 'required',
+            'fecha' => 'required|date',
+            'hora' => 'required',
+            'estado' => 'required|in:Confirmada,Pendiente,Completada,Cancelada',
+        ]);
+
+        $cita = Cita::findOrFail($id);
+        $cita->update([
+            'servicio_id' => $request->servicio_id,
+            'fecha' => $request->fecha,
+            'hora' => $request->hora,
+            'estado' => $request->estado,
+        ]);
+
+        return redirect()->route('citas.admin')->with('exito', '¡La cita ha sido modificada y actualizada con éxito!');
+    }
+
      
 }
