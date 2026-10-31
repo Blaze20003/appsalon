@@ -29,7 +29,19 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ url('/') }}">✂️ AppSalon 💈</a>
-            <div class="navbar-nav ms-auto">
+            <div class="navbar-nav ms-auto align-items-center">
+
+                <!-- ENLACE DE ADMINISTRADOR -->
+                @php
+                    $esAdmin = session('user_email') === 'admin@appsalon.com' || session('email') === 'admin@appsalon.com';
+                @endphp
+
+                @if($esAdmin)
+                    <li class="nav-item list-unstyled me-3">
+                        <a class="nav-link text-warning fw-bold" href="{{ route('citas.admin') }}">⚙️ Panel Admin</a>
+                    </li>
+                @endif
+
                 @if(session('user_id'))
                     <span class="nav-link text-light me-3">Hola, {{ session('user_nombre') }}</span>
                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
