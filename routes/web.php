@@ -22,5 +22,7 @@ Route::post('/registro', [AuthController::class, 'register'])->name('register.po
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rutas de Agendador de Citas
+
+use App\Http\Controllers\CitaController; // <--- ¡Asegúrate de que esta línea esté arriba del todo!
 Route::get('/citas/crear/{id}', [CitaController::class, 'crear'])->name('citas.crear');
 Route::post('/citas/guardar', [CitaController::class, 'guardar'])->name('citas.guardar');
