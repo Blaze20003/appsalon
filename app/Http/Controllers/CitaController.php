@@ -40,20 +40,35 @@ class CitaController extends Controller
 // Muestra todas las citas para el rol de Administrador
     public function indexAdmin()
     {
-        // Trae todas las citas junto con los datos del servicio y del usuario
-        $citas = Cita::with(['usuario', 'servicio'])->get();
+        $fechaFiltro = $request->get('fecha', date('Y-m-d'));
 
-        return view('citas.admin', compact('citas'));
+        // Trae las citas filtradas por la fecha seleccionada (o la de hoy por defecto)
+        $citas = Cita::with(['usuario', 'servicio'])
+                    ->whereDate('fecha', $fechaFiltro)
+                    ->orderBy('hora', 'asc')
+                    ->get();
+
+        return view('citas.admin', compact('citas', 'fechaFiltro'));
     }
 
-    // Elimina o cancela una cita existente
-    public function destruir($id)
+    // Actualizar estado o fecha/hora de la cita desde el panel de admin
+    public function actualizarEstado(Request $request, $id)
     {
-        $cita = Cita::findOrFail($id);
-        $cita->delete();
+        $request->validate([
+            'estado' => 'required|in:Confirmada,Pendiente,Completada,Cancelada',
+        ]);
 
-        return redirect()->route('citas.admin')
-                         ->with('exito', 'La cita ha sido cancelada correctamente.');
+        $cita = Cita::findOrFail($id);
+        $cita->estado = $request->estado;
+        
+        // Si el admin decide cambiar la hora o fecha manualmente
+        if ($request->has('hora') && !empty($request->hora)) {
+            $cita->hora = $request->hora;
+        }
+        
+        $cita->save();
+
+        return redirect()->back()->with('exito', '¡La cita ha sido actualizada correctamente!');
     }
 
      
