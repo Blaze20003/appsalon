@@ -2,21 +2,21 @@
 
 Sistema web desarrollado en PHP con el framework Laravel para la gestión de un salón de belleza y barbería, implementando el patrón arquitectónico MVC, autenticación de usuarios, control de accesos por roles y catálogo dinámico adaptado a pesos colombianos (COP).
 
-## 🚀 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 * **PHP** (Versión 8.2+)
 * **Laravel** 11 / 12 (Framework MVC)
 * **MySQL** (Vía XAMPP)
 * **Bootstrap 5** (Diseño y componentes responsivos)
 * **Blade** (Motor de plantillas)
 
-## 📋 Funcionalidades Implementadas
+## Funcionalidades Implementadas
 1. **Módulo de Autenticación:** Registro de nuevos usuarios, inicio y cierre de sesión seguro con contraseñas cifradas mediante `bcrypt`.
 2. **Control de Accesos por Roles:** Diferenciación automática entre Administrador (`admin = 1`) y Cliente (`admin = 0`) gestionada mediante variables de sesión.
 3. **Catálogo de Servicios:** Visualización dinámica de los servicios disponibles en la base de datos, con precios formateados en pesos colombianos (COP) y tiempos de duración.
 
 ---
 
-## ⚙️ Instrucciones de Instalación y Configuración
+## Instrucciones de Instalación y Configuración
 
 Sigue estos pasos para clonar y poner a marchar el proyecto en tu entorno local:
 

@@ -7,14 +7,28 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #f8f9fa; }
-        .card-custom { border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    </style>
+        :root {
+        --bs-primary: #111827; 
+    }
+    body { background-color: #f8f9fa; }
+    
+    /* Tarjetas con efecto flotante moderno y elegante */
+    .card-custom {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+</style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">AppSalon</a>
+            <a class="navbar-brand fw-bold" href="{{ url('/') }}">✂️ AppSalon 💈</a>
             <div class="navbar-nav ms-auto">
                 @if(session('user_id'))
                     <span class="nav-link text-light me-3">Hola, {{ session('user_nombre') }}</span>

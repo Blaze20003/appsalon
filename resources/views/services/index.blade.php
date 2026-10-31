@@ -28,10 +28,12 @@
                             <p class="card-text"><strong>Precio:</strong> $ {{ number_format($servicio->precio, 0, ',', '.') }}</p>
                             <p class="card-text"><small class="text-muted">Duración: {{ $servicio->duracion }} minutos</small></p>
                             
-                            <!-- Si es cliente, puede ver un botón de reservar (preparado para el siguiente módulo) -->
-                            @if(session('user_admin') == 0)
-                                <button class="btn btn-outline-primary btn-sm w-100 mt-2" disabled>Seleccionar Servicio</button>
-                            @endif
+                            <!-- Botón para agendar el servicio seleccionado -->
+                    @if(session('user_admin') == 0)
+                        <a href="{{ route('citas.crear', $servicio->id) }}" class="btn btn-dark btn-sm w-100 rounded-pill mt-3">
+                            Agendar este servicio
+                        </a>
+                    @endif
                         </div>
                     </div>
                 </div>
